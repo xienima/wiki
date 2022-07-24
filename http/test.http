@@ -14,3 +14,8 @@ GET http://localhost:8080/test/list
 Accept: application/json
 
 ###
+
+GET http://localhost:8080/demo/list
+Accept: application/json
+
+###

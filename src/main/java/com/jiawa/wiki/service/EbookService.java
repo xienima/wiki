@@ -30,6 +30,7 @@ public class EbookService {
             EbookResp ebookResp = new EbookResp();
             //ebookResp.setId(ebook.getId());
             BeanUtils.copyProperties(ebook,ebookResp);
+            respList.add(ebookResp);
         }
         return respList;
     }

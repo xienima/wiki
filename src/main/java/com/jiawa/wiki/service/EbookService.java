@@ -6,11 +6,10 @@ import com.jiawa.wiki.domain.EbookExample;
 import com.jiawa.wiki.mapper.EbookMapper;
 import com.jiawa.wiki.req.EbookReq;
 import com.jiawa.wiki.resp.EbookResp;
-import org.springframework.beans.BeanUtils;
+import com.jiawa.wiki.util.CopyUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,13 +24,14 @@ public class EbookService {
         criteria.andNameLike("%" + req.getName() + "%");
         List<Ebook> ebookList = ebookMapper.selectByExample(ebookExample);
 
-        List<EbookResp> respList =new ArrayList<>();
-        for (Ebook ebook : ebookList) {
-            EbookResp ebookResp = new EbookResp();
-            //ebookResp.setId(ebook.getId());
-            BeanUtils.copyProperties(ebook,ebookResp);
-            respList.add(ebookResp);
-        }
+//        List<EbookResp> respList =new ArrayList<>();
+//        for (Ebook ebook : ebookList) {
+//            EbookResp ebookResp = new EbookResp();
+//            //ebookResp.setId(ebook.getId());
+//            BeanUtils.copyProperties(ebook,ebookResp);
+//            respList.add(ebookResp);
+//        }
+        List<EbookResp> respList = CopyUtil.copyList(ebookList, EbookResp.class);
         return respList;
     }
 }

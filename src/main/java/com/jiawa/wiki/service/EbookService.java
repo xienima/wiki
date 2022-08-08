@@ -6,7 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.jiawa.wiki.domain.Ebook;
 import com.jiawa.wiki.domain.EbookExample;
 import com.jiawa.wiki.mapper.EbookMapper;
-import com.jiawa.wiki.req.EbookReq;
+import com.jiawa.wiki.req.EbookQueryReq;
+import com.jiawa.wiki.req.EbookSaveReq;
 import com.jiawa.wiki.resp.EbookResp;
 import com.jiawa.wiki.resp.PageResp;
 import com.jiawa.wiki.util.CopyUtil;
@@ -25,7 +26,7 @@ public class EbookService {
     @Resource
     private EbookMapper ebookMapper;
 
-    public PageResp<EbookResp> list(EbookReq req){
+    public PageResp<EbookResp> list(EbookQueryReq req){
 
 
 
@@ -56,5 +57,22 @@ public class EbookService {
         pageResp.setList(list);
 
         return pageResp;
+    }
+
+    /**
+     *
+     * @param req
+     * 保存
+     */
+
+    public void save(EbookSaveReq req){
+        Ebook ebook = CopyUtil.copy(req,Ebook.class);
+        if (ObjectUtils.isEmpty(req.getId())){
+            //新增
+            ebookMapper.insert(ebook);
+        }else{
+            //更新
+            ebookMapper.updateByPrimaryKey(ebook);
+        }
     }
 }

@@ -87,7 +87,7 @@ public class CategoryService {
         categoryMapper.deleteByPrimaryKey(id);
     }
 
-    public List<CategoryResp> all(CategoryQueryReq req){
+    public List<CategoryResp> all(){
         CategoryExample categoryExample = new CategoryExample();
         categoryExample.setOrderByClause("sort asc");
         List<Category> categoryList = categoryMapper.selectByExample(categoryExample);

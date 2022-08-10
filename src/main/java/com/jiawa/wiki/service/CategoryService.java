@@ -35,6 +35,7 @@ public class CategoryService {
 
 
         CategoryExample categoryExample = new CategoryExample();
+        categoryExample.setOrderByClause("sort asc");
         CategoryExample.Criteria criteria = categoryExample.createCriteria();
         PageHelper.startPage(req.getPage(), req.getSize());
         List<Category> categoryList = categoryMapper.selectByExample(categoryExample);
@@ -85,4 +86,16 @@ public class CategoryService {
     public void delete(Long id){
         categoryMapper.deleteByPrimaryKey(id);
     }
+
+    public List<CategoryResp> all(CategoryQueryReq req){
+        CategoryExample categoryExample = new CategoryExample();
+        categoryExample.setOrderByClause("sort asc");
+        List<Category> categoryList = categoryMapper.selectByExample(categoryExample);
+
+        List<CategoryResp> list = CopyUtil.copyList(categoryList, CategoryResp.class);
+
+        return list;
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.jiawa.wiki.controller;
 import com.jiawa.wiki.req.DocQueryReq;
 import com.jiawa.wiki.req.DocSaveReq;
 import com.jiawa.wiki.resp.CommonResp;
+import com.jiawa.wiki.resp.DocResp;
 import com.jiawa.wiki.resp.PageResp;
 import com.jiawa.wiki.service.DocService;
 import org.springframework.web.bind.annotation.*;

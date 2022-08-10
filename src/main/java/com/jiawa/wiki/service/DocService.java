@@ -87,6 +87,17 @@ public class DocService {
         docMapper.deleteByPrimaryKey(id);
     }
 
+
+    /**
+     * 删除多个
+     */
+    public void delete(List<String> ids){
+        DocExample docExample = new DocExample();
+        DocExample.Criteria criteria = docExample.createCriteria();
+        criteria.andIdIn(ids);
+        docMapper.deleteByExample(docExample);
+    }
+
     public List<DocResp> all(){
         DocExample docExample = new DocExample();
         docExample.setOrderByClause("sort asc");

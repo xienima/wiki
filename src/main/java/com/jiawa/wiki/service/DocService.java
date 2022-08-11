@@ -118,5 +118,12 @@ public class DocService {
         return list;
     }
 
+    /**
+     * 根据id查找
+     */
+    public String findContent(Long id){
 
+        Content content =contentMapper.selectByPrimaryKey(id);
+        return content.getContent();
+    }
 }
